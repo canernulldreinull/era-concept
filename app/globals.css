@@ -1,37 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f5f5;
-  --foreground: #171717;
+  --background: #f5f2ec;
+  --surface: #ffffff;
+  --surface-soft: #ece8e0;
+
+  --foreground: #1c1b18;
+  --muted: #706d66;
+
+  --accent: #9a7b56;
+  --accent-dark: #765b3d;
+
+  --dark: #211f1b;
+  --border: rgba(28, 27, 24, 0.1);
 }
 
 * {
   box-sizing: border-box;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+
   background: var(--background);
   color: var(--foreground);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 16px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+::selection {
+  background: #211f1b;
+  color: #ffffff;
 }
 
-input,
-textarea,
-select {
-  color: #171717;
-  background-color: #ffffff;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #a3a3a3;
+img {
+  display: block;
 }
 
 button,
@@ -40,6 +63,7 @@ textarea,
 select {
   font: inherit;
 }
+
 button,
 a,
 [role="button"] {
@@ -48,4 +72,136 @@ a,
 
 button:disabled {
   cursor: not-allowed;
+  opacity: 0.55;
+}
+
+input,
+textarea,
+select {
+  color: var(--foreground);
+  background-color: #ffffff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9b9891;
+}
+
+button,
+input,
+textarea,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(154, 123, 86, 0.8);
+  outline-offset: 3px;
+}
+
+/* Premium başlık karakteri */
+.era-display {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+/* Küçük premium üst başlıklar */
+.era-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: #807b72;
+}
+
+/* İnce premium divider */
+.era-divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(28, 27, 24, 0.1);
+}
+
+/* Temel transition */
+.era-transition {
+  transition:
+    color 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease,
+    opacity 250ms ease,
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eeeae3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b9b2a8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #938b80;
+}
+
+/* Yumuşak giriş animasyonu */
+@keyframes eraFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.era-fade-up {
+  animation: eraFadeUp 700ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+/* Hafif hero zoom */
+@keyframes eraHeroZoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.035);
+  }
+}
+
+.era-hero-image {
+  animation: eraHeroZoom 12s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

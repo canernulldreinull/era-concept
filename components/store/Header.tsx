@@ -55,25 +55,46 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full overflow-x-hidden bg-white">
-        {/* ÜST BİLGİ ŞERİDİ */}
-        <div className="border-b border-black/5 bg-[#25241f] text-white">
-          <div className="mx-auto flex h-8 w-full max-w-[1440px] items-center justify-center px-3 text-center text-[10px] tracking-wide text-white/75 sm:px-6 sm:text-[11px]">
-            Era Concept · Yaşam alanınız için
-            mobilya koleksiyonları
+      <header className="sticky top-0 z-50 w-full bg-[#f8f6f1]/95 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl">
+        {/* PREMIUM ÜST ŞERİT */}
+        <div className="bg-[#211f1b] text-white">
+          <div className="mx-auto flex h-[34px] w-full max-w-[1500px] items-center justify-center px-4 lg:justify-between lg:px-10">
+            <p className="text-center text-[9px] font-medium uppercase tracking-[0.19em] text-white/70 sm:text-[10px]">
+              Yaşam alanlarınız için zamansız
+              tasarımlar
+            </p>
+
+            <div className="hidden items-center gap-7 text-[10px] uppercase tracking-[0.15em] text-white/55 lg:flex">
+              <Link
+                href="/siparis-takibi"
+                className="transition hover:text-white"
+              >
+                Sipariş Takibi
+              </Link>
+
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:text-white"
+              >
+                Tuzla Mağazamız
+              </a>
+            </div>
           </div>
         </div>
 
         {/* ANA HEADER */}
-        <div className="border-b border-black/10">
-          <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between gap-1.5 px-3 sm:h-[88px] sm:gap-4 sm:px-5 lg:gap-6 lg:px-10">
+        <div>
+          <div className="mx-auto flex h-[78px] w-full max-w-[1500px] items-center justify-between gap-3 px-4 sm:h-[88px] sm:px-6 lg:h-[94px] lg:px-10">
             {/* MOBİL MENÜ */}
             <button
               type="button"
-              onClick={() =>
-                setMobileOpen(true)
-              }
-              className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center lg:hidden"
+              onClick={() => {
+                setSearchOpen(false);
+                setMobileOpen(true);
+              }}
+              className="flex h-10 w-10 shrink-0 items-center justify-start lg:hidden"
               aria-label="Menüyü aç"
             >
               <MenuIcon />
@@ -82,7 +103,7 @@ export default function Header() {
             {/* LOGO */}
             <Link
               href="/"
-              className="relative block h-[44px] w-[128px] shrink-0 sm:h-[58px] sm:w-[190px] lg:w-[210px]"
+              className="relative block h-[46px] w-[132px] shrink-0 sm:h-[58px] sm:w-[185px] lg:h-[64px] lg:w-[215px]"
               aria-label="Era Concept Ana Sayfa"
             >
               <Image
@@ -90,7 +111,7 @@ export default function Header() {
                 alt="Era Concept"
                 fill
                 priority
-                sizes="(max-width: 640px) 128px, 210px"
+                sizes="(max-width: 640px) 132px, 215px"
                 className="object-contain object-left"
               />
             </Link>
@@ -103,82 +124,85 @@ export default function Header() {
                   (current) => !current
                 )
               }
-              className="mx-auto hidden h-11 max-w-[520px] flex-1 cursor-pointer items-center justify-between border-b border-black/20 text-left text-sm text-neutral-400 transition hover:border-black lg:flex"
+              className="group mx-auto hidden h-12 max-w-[480px] flex-1 items-center justify-between border border-black/[0.09] bg-white/60 px-5 text-left transition duration-300 hover:border-black/20 hover:bg-white lg:flex"
             >
-              <span>
-                Ürün, kategori veya koleksiyon ara
+              <span className="text-[13px] text-neutral-400">
+                Ürün veya koleksiyon ara
               </span>
 
-              <SearchIcon />
+              <span className="text-neutral-600 transition-transform duration-300 group-hover:scale-105">
+                <SearchIcon />
+              </span>
             </button>
 
             {/* SAĞ */}
-            <div className="flex min-w-0 shrink-0 items-center gap-1 sm:gap-3">
+            <div className="flex shrink-0 items-center gap-1 sm:gap-2">
               {/* MOBİL ARAMA */}
               <button
                 type="button"
-                onClick={() =>
+                onClick={() => {
+                  setMobileOpen(false);
                   setSearchOpen(
                     (current) => !current
-                  )
-                }
-                className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center lg:hidden"
+                  );
+                }}
+                className="flex h-10 w-10 items-center justify-center text-[#27251f] lg:hidden"
                 aria-label="Ara"
               >
                 <SearchIcon />
               </button>
 
-              {/* INSTAGRAM */}
               <a
                 href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Era Concept Instagram"
                 title="Instagram"
-                className="group hidden h-10 w-10 items-center justify-center rounded-full border border-black/10 text-neutral-600 transition hover:border-black/20 hover:bg-[#f8f7f4] hover:text-black sm:flex"
+                className="group hidden h-11 w-11 items-center justify-center text-neutral-600 transition hover:text-black sm:flex"
               >
-                <FaInstagram className="h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-110" />
+                <FaInstagram className="h-[17px] w-[17px] transition-transform duration-300 group-hover:scale-110" />
               </a>
 
-              {/* KONUM */}
               <a
                 href={mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Era Concept mağaza konumu"
                 title="Mağaza Konumu"
-                className="group hidden h-10 w-10 items-center justify-center rounded-full border border-black/10 text-neutral-600 transition hover:border-black/20 hover:bg-[#f8f7f4] hover:text-black sm:flex"
+                className="group hidden h-11 w-11 items-center justify-center text-neutral-600 transition hover:text-black sm:flex"
               >
-                <FaLocationDot className="h-[17px] w-[17px] transition-transform duration-200 group-hover:scale-110" />
+                <FaLocationDot className="h-[16px] w-[16px] transition-transform duration-300 group-hover:scale-110" />
               </a>
 
-              <CartButton />
+              <div className="ml-0 border-l border-black/10 pl-1 sm:ml-1 sm:pl-2">
+                <CartButton />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* MASAÜSTÜ KATEGORİ MENÜSÜ */}
-        <div className="hidden border-b border-black/5 bg-white lg:block">
-          <nav className="mx-auto flex h-[52px] max-w-[1440px] items-center justify-center gap-8 px-10">
+        {/* MASAÜSTÜ NAV */}
+        <div className="hidden border-t border-black/[0.055] lg:block">
+          <nav className="mx-auto flex h-[54px] max-w-[1500px] items-center justify-center gap-9 px-10">
             {menuItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="group relative flex h-full items-center text-[13px] font-medium text-neutral-700 transition hover:text-black"
+                className="group relative flex h-full items-center text-[12px] font-medium tracking-[0.025em] text-[#4e4b45] transition hover:text-black"
               >
                 {item.label}
 
-                <span className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-100" />
+                <span className="absolute inset-x-0 bottom-0 h-[1px] origin-center scale-x-0 bg-[#9a7b56] transition-transform duration-300 group-hover:scale-x-100" />
               </Link>
             ))}
 
             <Link
               href="/#urunler"
-              className="group relative flex h-full items-center text-[13px] font-semibold text-[#8d5637]"
+              className="group relative flex h-full items-center text-[12px] font-semibold tracking-[0.025em] text-[#8a6743]"
             >
               Tüm Ürünler
 
-              <span className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-[#8d5637] transition-transform duration-300 group-hover:scale-x-100" />
+              <span className="absolute inset-x-0 bottom-0 h-[1px] origin-center scale-x-0 bg-[#9a7b56] transition-transform duration-300 group-hover:scale-x-100" />
             </Link>
           </nav>
         </div>
@@ -186,42 +210,85 @@ export default function Header() {
 
       {/* ARAMA PANELİ */}
       {searchOpen && (
-        <div className="fixed inset-x-0 top-[108px] z-[60] border-b border-black/10 bg-white shadow-lg sm:top-[120px] lg:top-[173px]">
-          <div className="mx-auto w-full max-w-3xl px-4 py-5 sm:px-6 sm:py-7">
-            <form
-              action="/search"
-              method="GET"
-              className="flex items-center border-b-2 border-black"
-            >
-              <SearchIcon />
+        <>
+          <button
+            type="button"
+            aria-label="Aramayı kapat"
+            onClick={() =>
+              setSearchOpen(false)
+            }
+            className="fixed inset-0 z-[55] bg-black/25 backdrop-blur-[1px]"
+          />
 
-              <input
-                autoFocus
-                type="search"
-                name="q"
-                placeholder="Ne aramıştınız?"
-                className="h-12 min-w-0 flex-1 bg-transparent px-3 text-base outline-none placeholder:text-neutral-400 sm:h-14 sm:px-4 sm:text-lg"
-              />
+          <div className="fixed inset-x-0 top-[112px] z-[60] border-b border-black/10 bg-[#f8f6f1] shadow-[0_25px_60px_rgba(0,0,0,0.12)] sm:top-[122px] lg:top-[182px]">
+            <div className="mx-auto max-w-4xl px-5 py-9 sm:px-8 sm:py-12">
+              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
+                Era Concept
+              </p>
 
-              <button
-                type="submit"
-                className="cursor-pointer px-3 text-sm font-medium text-black"
+              <form
+                action="/search"
+                method="GET"
+                className="flex items-center border-b border-black/50"
               >
-                Ara
-              </button>
+                <span className="text-neutral-500">
+                  <SearchIcon />
+                </span>
 
-              <button
-                type="button"
-                onClick={() =>
-                  setSearchOpen(false)
-                }
-                className="cursor-pointer px-3 text-sm text-neutral-500"
-              >
-                Kapat
-              </button>
-            </form>
+                <input
+                  autoFocus
+                  type="search"
+                  name="q"
+                  placeholder="Ne arıyorsunuz?"
+                  className="h-16 min-w-0 flex-1 bg-transparent px-4 text-xl font-light outline-none placeholder:text-neutral-400 sm:h-[74px] sm:text-2xl"
+                />
+
+                <button
+                  type="submit"
+                  className="px-3 text-xs font-semibold uppercase tracking-[0.15em] text-black sm:px-5"
+                >
+                  Ara
+                </button>
+              </form>
+
+              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3">
+                <span className="text-xs text-neutral-400">
+                  Popüler:
+                </span>
+
+                <Link
+                  href="/category/oturma-odasi"
+                  onClick={() =>
+                    setSearchOpen(false)
+                  }
+                  className="text-xs text-neutral-600 hover:text-black"
+                >
+                  Oturma Odası
+                </Link>
+
+                <Link
+                  href="/category/yemek-odasi"
+                  onClick={() =>
+                    setSearchOpen(false)
+                  }
+                  className="text-xs text-neutral-600 hover:text-black"
+                >
+                  Yemek Odası
+                </Link>
+
+                <Link
+                  href="/category/yatak-odasi"
+                  onClick={() =>
+                    setSearchOpen(false)
+                  }
+                  className="text-xs text-neutral-600 hover:text-black"
+                >
+                  Yatak Odası
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* MOBİL DRAWER */}
@@ -233,17 +300,18 @@ export default function Header() {
             onClick={() =>
               setMobileOpen(false)
             }
-            className="absolute inset-0 bg-black/40"
+            className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
           />
 
-          <aside className="absolute inset-y-0 left-0 w-[90%] max-w-[360px] overflow-y-auto bg-white shadow-2xl">
-            <div className="flex h-20 items-center justify-between border-b border-black/10 px-6">
-              <div className="relative h-[52px] w-[170px]">
+          <aside className="absolute inset-y-0 left-0 w-[92%] max-w-[390px] overflow-y-auto bg-[#f8f6f1] shadow-2xl">
+            {/* DRAWER HEADER */}
+            <div className="flex h-[94px] items-center justify-between border-b border-black/[0.08] px-6">
+              <div className="relative h-[56px] w-[175px]">
                 <Image
                   src="/era-concept-logo.png"
                   alt="Era Concept"
                   fill
-                  sizes="170px"
+                  sizes="175px"
                   className="object-contain object-left"
                 />
               </div>
@@ -253,35 +321,48 @@ export default function Header() {
                 onClick={() =>
                   setMobileOpen(false)
                 }
-                className="flex h-10 w-10 cursor-pointer items-center justify-center text-2xl"
+                className="flex h-11 w-11 items-center justify-center text-[28px] font-light text-neutral-600"
                 aria-label="Menüyü kapat"
               >
                 ×
               </button>
             </div>
 
-            <nav className="px-6 py-6">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+            {/* MENÜ */}
+            <nav className="px-6 pb-8 pt-8">
+              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#958f85]">
                 Koleksiyonlar
               </p>
 
-              <div className="divide-y divide-black/10 border-y border-black/10">
-                {menuItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() =>
-                      setMobileOpen(false)
-                    }
-                    className="flex items-center justify-between py-4 text-base font-medium"
-                  >
-                    {item.label}
+              <div className="border-y border-black/[0.09]">
+                {menuItems.map(
+                  (item, index) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      onClick={() =>
+                        setMobileOpen(
+                          false
+                        )
+                      }
+                      className={`group flex items-center justify-between py-[18px] ${
+                        index !==
+                        menuItems.length -
+                          1
+                          ? "border-b border-black/[0.07]"
+                          : ""
+                      }`}
+                    >
+                      <span className="text-[17px] font-medium tracking-[-0.01em] text-[#26241f]">
+                        {item.label}
+                      </span>
 
-                    <span className="text-neutral-400">
-                      →
-                    </span>
-                  </Link>
-                ))}
+                      <span className="text-lg font-light text-[#9a7b56] transition group-hover:translate-x-1">
+                        →
+                      </span>
+                    </Link>
+                  )
+                )}
               </div>
 
               <Link
@@ -289,26 +370,26 @@ export default function Header() {
                 onClick={() =>
                   setMobileOpen(false)
                 }
-                className="mt-6 flex min-h-12 items-center justify-center bg-[#181817] px-6 text-sm font-medium text-white"
+                className="mt-7 flex min-h-[52px] items-center justify-center bg-[#211f1b] px-6 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-black"
               >
                 Tüm Ürünleri İncele
               </Link>
             </nav>
 
-            {/* MOBİL SOSYAL + KONUM */}
-            <div className="border-t border-black/10 px-6 py-6">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
-                Bizi Takip Edin
+            {/* HIZLI MENÜ */}
+            <div className="border-t border-black/[0.08] px-6 py-7">
+              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#958f85]">
+                Era Concept
               </p>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2">
                 <a
                   href={instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex min-h-12 items-center justify-center gap-2 border border-black/10 text-sm font-medium transition hover:bg-neutral-50"
+                  className="flex min-h-[50px] items-center justify-center gap-2 border border-black/10 bg-white/50 text-xs font-medium transition hover:bg-white"
                 >
-                  <FaInstagram className="h-[18px] w-[18px]" />
+                  <FaInstagram className="h-[16px] w-[16px]" />
                   Instagram
                 </a>
 
@@ -316,20 +397,31 @@ export default function Header() {
                   href={mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex min-h-12 items-center justify-center gap-2 border border-black/10 text-sm font-medium transition hover:bg-neutral-50"
+                  className="flex min-h-[50px] items-center justify-center gap-2 border border-black/10 bg-white/50 text-xs font-medium transition hover:bg-white"
                 >
-                  <FaLocationDot className="h-[17px] w-[17px]" />
-                  Konum
+                  <FaLocationDot className="h-[15px] w-[15px]" />
+                  Mağazamız
                 </a>
               </div>
+
+              <Link
+                href="/siparis-takibi"
+                onClick={() =>
+                  setMobileOpen(false)
+                }
+                className="mt-2 flex min-h-[50px] items-center justify-center border border-black/10 bg-white/50 text-xs font-medium"
+              >
+                Sipariş Takibi
+              </Link>
             </div>
 
-            <div className="border-t border-black/10 px-6 py-7">
-              <p className="text-sm font-medium">
-                Era Concept
+            {/* ADRES */}
+            <div className="border-t border-black/[0.08] px-6 py-8">
+              <p className="text-[15px] font-medium">
+                Tuzla Mağazası
               </p>
 
-              <p className="mt-2 text-xs leading-6 text-neutral-500">
+              <p className="mt-3 text-xs leading-6 text-neutral-500">
                 Aydınlı, Atlas Sk. No:7/B
                 <br />
                 34953 Tuzla / İstanbul
@@ -344,10 +436,10 @@ export default function Header() {
 
 function MenuIcon() {
   return (
-    <div className="space-y-[5px]">
-      <span className="block h-[1.5px] w-6 bg-black" />
-      <span className="block h-[1.5px] w-6 bg-black" />
-      <span className="block h-[1.5px] w-6 bg-black" />
+    <div className="space-y-[6px]">
+      <span className="block h-[1px] w-7 bg-[#211f1b]" />
+      <span className="block h-[1px] w-5 bg-[#211f1b]" />
+      <span className="block h-[1px] w-7 bg-[#211f1b]" />
     </div>
   );
 }
@@ -360,7 +452,7 @@ function SearchIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.7"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
