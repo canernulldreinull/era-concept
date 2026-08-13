@@ -55,10 +55,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white">
+      <header className="sticky top-0 z-50 w-full overflow-x-hidden bg-white">
         {/* ÜST BİLGİ ŞERİDİ */}
         <div className="border-b border-black/5 bg-[#25241f] text-white">
-          <div className="mx-auto flex h-8 max-w-[1440px] items-center justify-center px-6 text-center text-[11px] tracking-wide text-white/75">
+          <div className="mx-auto flex h-8 w-full max-w-[1440px] items-center justify-center px-3 text-center text-[10px] tracking-wide text-white/75 sm:px-6 sm:text-[11px]">
             Era Concept · Yaşam alanınız için
             mobilya koleksiyonları
           </div>
@@ -66,7 +66,7 @@ export default function Header() {
 
         {/* ANA HEADER */}
         <div className="border-b border-black/10">
-          <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between gap-2 px-3 sm:h-[88px] sm:gap-4 sm:px-5 lg:gap-6 lg:px-10">
+          <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between gap-1.5 px-3 sm:h-[88px] sm:gap-4 sm:px-5 lg:gap-6 lg:px-10">
             {/* MOBİL MENÜ */}
             <button
               type="button"
@@ -82,7 +82,7 @@ export default function Header() {
             {/* LOGO */}
             <Link
               href="/"
-              className="relative block h-[46px] w-[135px] shrink-0 sm:h-[58px] sm:w-[190px] lg:w-[210px]"
+              className="relative block h-[44px] w-[128px] shrink-0 sm:h-[58px] sm:w-[190px] lg:w-[210px]"
               aria-label="Era Concept Ana Sayfa"
             >
               <Image
@@ -90,7 +90,7 @@ export default function Header() {
                 alt="Era Concept"
                 fill
                 priority
-                sizes="210px"
+                sizes="(max-width: 640px) 128px, 210px"
                 className="object-contain object-left"
               />
             </Link>
@@ -113,7 +113,7 @@ export default function Header() {
             </button>
 
             {/* SAĞ */}
-            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <div className="flex min-w-0 shrink-0 items-center gap-1 sm:gap-3">
               {/* MOBİL ARAMA */}
               <button
                 type="button"
@@ -186,8 +186,8 @@ export default function Header() {
 
       {/* ARAMA PANELİ */}
       {searchOpen && (
-        <div className="fixed inset-x-0 top-[108px] z-[60] border-b border-black/10 bg-white shadow-lg lg:top-[173px]">
-          <div className="mx-auto max-w-3xl px-6 py-7">
+        <div className="fixed inset-x-0 top-[108px] z-[60] border-b border-black/10 bg-white shadow-lg sm:top-[120px] lg:top-[173px]">
+          <div className="mx-auto w-full max-w-3xl px-4 py-5 sm:px-6 sm:py-7">
             <form
               action="/search"
               method="GET"
@@ -200,7 +200,7 @@ export default function Header() {
                 type="search"
                 name="q"
                 placeholder="Ne aramıştınız?"
-                className="h-14 flex-1 bg-transparent px-4 text-lg outline-none placeholder:text-neutral-400"
+                className="h-12 min-w-0 flex-1 bg-transparent px-3 text-base outline-none placeholder:text-neutral-400 sm:h-14 sm:px-4 sm:text-lg"
               />
 
               <button
@@ -236,7 +236,7 @@ export default function Header() {
             className="absolute inset-0 bg-black/40"
           />
 
-          <aside className="absolute inset-y-0 left-0 w-[88%] max-w-[380px] overflow-y-auto bg-white shadow-2xl">
+          <aside className="absolute inset-y-0 left-0 w-[90%] max-w-[360px] overflow-y-auto bg-white shadow-2xl">
             <div className="flex h-20 items-center justify-between border-b border-black/10 px-6">
               <div className="relative h-[52px] w-[170px]">
                 <Image
@@ -253,7 +253,7 @@ export default function Header() {
                 onClick={() =>
                   setMobileOpen(false)
                 }
-                className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center lg:hidden"
+                className="flex h-10 w-10 cursor-pointer items-center justify-center text-2xl"
                 aria-label="Menüyü kapat"
               >
                 ×
