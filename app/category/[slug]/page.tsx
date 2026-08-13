@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -37,6 +38,72 @@ const categoryHeroMap: Record<string, string> = {
   kitaplik:
     "/images/home/kitaplik.png",
 };
+
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const category = await prisma.category.findUnique({
+    where: {
+      slug,
+    },
+  });
+
+  if (!category || !category.active) {
+    return {
+      title: "Kategori Bulunamadı",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const description =
+    category.description ||
+    `${category.name} koleksiyonunu Era Concept'te keşfedin. Modern ve şık mobilya seçeneklerini inceleyin.`;
+
+  const categoryUrl =
+    `https://eraconcept.com.tr/category/${category.slug}`;
+
+  const image =
+    category.imageUrl ||
+    categoryHeroMap[category.slug] ||
+    "/images/home/hero-salon.jpg";
+
+  return {
+    title: category.name,
+
+    description,
+
+    alternates: {
+      canonical: categoryUrl,
+    },
+
+    openGraph: {
+      type: "website",
+      locale: "tr_TR",
+      url: categoryUrl,
+      siteName: "Era Concept",
+      title: `${category.name} | Era Concept`,
+      description,
+      images: [
+        {
+          url: image,
+          alt: `${category.name} koleksiyonu`,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${category.name} | Era Concept`,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default async function CategoryPage({
   params,

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -11,6 +12,80 @@ type ProductPageProps = {
     slug: string;
   }>;
 };
+
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const product = await prisma.product.findUnique({
+    where: {
+      slug,
+    },
+    include: {
+      category: true,
+      images: {
+        orderBy: {
+          position: "asc",
+        },
+      },
+    },
+  });
+
+  if (!product || !product.active) {
+    return {
+      title: "Ürün Bulunamadı",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const description =
+    product.shortDescription ||
+    product.description?.slice(0, 155) ||
+    `${product.name} ürününü Era Concept'te keşfedin. Modern ve şık mobilya seçeneklerini inceleyin.`;
+
+  const productUrl =
+    `https://eraconcept.com.tr/products/${product.slug}`;
+
+  const image =
+    product.images[0]?.url ||
+    "/images/home/hero-salon.jpg";
+
+  return {
+    title: product.name,
+
+    description,
+
+    alternates: {
+      canonical: productUrl,
+    },
+
+    openGraph: {
+      type: "website",
+      locale: "tr_TR",
+      url: productUrl,
+      siteName: "Era Concept",
+      title: `${product.name} | Era Concept`,
+      description,
+      images: [
+        {
+          url: image,
+          alt: product.name,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | Era Concept`,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default async function ProductPage({
   params,
@@ -55,8 +130,53 @@ export default async function ProductPage({
       )
     : null;
 
+        const productUrl =
+  `https://eraconcept.com.tr/products/${product.slug}`;
+
+const productImage =
+  product.images[0]?.url ||
+  "https://eraconcept.com.tr/images/home/hero-salon.jpg";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: product.name,
+  description:
+    product.shortDescription ||
+    product.description ||
+    `${product.name} - Era Concept`,
+  image: product.images.length > 0
+    ? product.images.map((image) => image.url)
+    : [productImage],
+  url: productUrl,
+  sku: product.id,
+  category: product.category.name,
+  brand: {
+    "@type": "Brand",
+    name: "Era Concept",
+  },
+  offers: {
+    "@type": "Offer",
+    url: productUrl,
+    priceCurrency: "TRY",
+    price: price.toFixed(2),
+    availability:
+      product.stock > 0
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+    itemCondition:
+      "https://schema.org/NewCondition",
+  },
+};
+
   return (
     <>
+    <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(structuredData),
+  }}
+/>
       <Header />
 
       <main className="bg-[#f8f7f4] text-[#181817]">
