@@ -65,28 +65,27 @@ export default function CookieBanner() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[999] border-t border-black/10 bg-[#f8f7f4]/95 shadow-[0_-12px_40px_rgba(0,0,0,0.10)] backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-6 py-5">
+    <div className="fixed inset-x-0 bottom-0 z-[999] w-full overflow-x-hidden border-t border-black/10 bg-[#f8f7f4]/95 shadow-[0_-12px_40px_rgba(0,0,0,0.10)] backdrop-blur-xl">
+      <div className="mx-auto w-full max-w-7xl px-3 py-4 sm:px-6 sm:py-5">
         {!settingsOpen ? (
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-            {/* SOL */}
-            <div className="flex max-w-3xl items-start gap-4">
+          <div className="flex w-full flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+            <div className="flex min-w-0 max-w-3xl items-start gap-3 sm:gap-4">
               <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white sm:flex">
                 <CookieIcon />
               </div>
 
-              <div>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <h2 className="text-base font-semibold tracking-tight text-[#181817]">
+              <div className="min-w-0">
+                <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1">
+                  <h2 className="text-sm font-semibold tracking-tight text-[#181817] sm:text-base">
                     Gizliliğiniz bizim için önemli.
                   </h2>
 
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-neutral-400 sm:text-[10px] sm:tracking-[0.18em]">
                     Era Concept
                   </span>
                 </div>
 
-                <p className="mt-1.5 max-w-2xl text-xs leading-5 text-neutral-500 sm:text-[13px]">
+                <p className="mt-1.5 max-w-2xl text-[11px] leading-5 text-neutral-500 sm:text-[13px]">
                   Sitemizin çalışması için zorunlu çerezleri kullanıyoruz.
                   İzninizle analitik ve performans çerezlerini de
                   kullanabiliriz.{" "}
@@ -100,12 +99,11 @@ export default function CookieBanner() {
               </div>
             </div>
 
-            {/* SAĞ */}
-            <div className="flex shrink-0 flex-wrap items-center gap-2.5">
+            <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3 lg:w-auto lg:min-w-[430px]">
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="min-h-11 cursor-pointer px-4 text-xs font-medium text-neutral-500 transition hover:text-black"
+                className="min-h-11 w-full cursor-pointer border border-black/10 bg-transparent px-4 text-xs font-medium text-neutral-600 transition hover:bg-white hover:text-black"
               >
                 Tercihleri Yönet
               </button>
@@ -113,7 +111,7 @@ export default function CookieBanner() {
               <button
                 type="button"
                 onClick={rejectOptional}
-                className="min-h-11 cursor-pointer border border-black/15 bg-white px-5 text-sm font-medium text-[#181817] transition hover:bg-neutral-50"
+                className="min-h-11 w-full cursor-pointer border border-black/15 bg-white px-4 text-sm font-medium text-[#181817] transition hover:bg-neutral-50"
               >
                 Reddet
               </button>
@@ -121,22 +119,21 @@ export default function CookieBanner() {
               <button
                 type="button"
                 onClick={acceptAll}
-                className="min-h-11 cursor-pointer bg-[#1f1e1a] px-6 text-sm font-medium text-white transition hover:bg-black"
+                className="min-h-11 w-full cursor-pointer bg-[#1f1e1a] px-4 text-sm font-medium text-white transition hover:bg-black"
               >
                 Tümünü Kabul Et
               </button>
             </div>
           </div>
         ) : (
-          /* TERCİHLER AÇILDIĞINDA */
-          <div>
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
+          <div className="w-full">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400 sm:text-[10px] sm:tracking-[0.2em]">
                   Çerez Tercihleri
                 </p>
 
-                <h2 className="mt-1 text-lg font-semibold tracking-tight">
+                <h2 className="mt-1 max-w-xl text-base font-semibold leading-6 tracking-tight sm:text-lg">
                   Hangi çerezlere izin vermek istersiniz?
                 </h2>
               </div>
@@ -144,13 +141,13 @@ export default function CookieBanner() {
               <button
                 type="button"
                 onClick={() => setSettingsOpen(false)}
-                className="self-start cursor-pointer text-xs font-medium text-neutral-500 transition hover:text-black lg:self-auto"
+                className="self-start cursor-pointer text-xs font-medium text-neutral-500 transition hover:text-black"
               >
                 Kapat ×
               </button>
             </div>
 
-            <div className="mt-5 grid gap-px overflow-hidden border border-black/10 bg-black/10 md:grid-cols-3">
+            <div className="mt-4 grid gap-px overflow-hidden border border-black/10 bg-black/10 sm:mt-5 md:grid-cols-3">
               <CookieSetting
                 title="Zorunlu"
                 description="Sepet, güvenlik ve temel site özellikleri."
@@ -173,7 +170,7 @@ export default function CookieBanner() {
               />
             </div>
 
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-4 flex flex-col gap-3 sm:mt-5 sm:flex-row sm:items-center sm:justify-between">
               <Link
                 href="/cerez-politikasi"
                 className="text-xs text-neutral-500 underline underline-offset-4 transition hover:text-black"
@@ -181,11 +178,11 @@ export default function CookieBanner() {
                 Çerez Politikası&apos;nı incele
               </Link>
 
-              <div className="flex flex-wrap gap-2.5">
+              <div className="grid w-full grid-cols-1 gap-2 sm:w-auto sm:grid-cols-2">
                 <button
                   type="button"
                   onClick={rejectOptional}
-                  className="min-h-11 cursor-pointer border border-black/15 bg-white px-5 text-sm font-medium transition hover:bg-neutral-50"
+                  className="min-h-11 w-full cursor-pointer border border-black/15 bg-white px-5 text-sm font-medium transition hover:bg-neutral-50"
                 >
                   Tümünü Reddet
                 </button>
@@ -193,7 +190,7 @@ export default function CookieBanner() {
                 <button
                   type="button"
                   onClick={savePreferences}
-                  className="min-h-11 cursor-pointer bg-[#1f1e1a] px-6 text-sm font-medium text-white transition hover:bg-black"
+                  className="min-h-11 w-full cursor-pointer bg-[#1f1e1a] px-6 text-sm font-medium text-white transition hover:bg-black"
                 >
                   Tercihleri Kaydet
                 </button>
@@ -220,8 +217,8 @@ function CookieSetting({
   onChange?: (value: boolean) => void;
 }) {
   return (
-    <div className="flex items-center justify-between gap-5 bg-[#f8f7f4] p-4">
-      <div>
+    <div className="flex min-w-0 items-center justify-between gap-4 bg-[#f8f7f4] p-3.5 sm:gap-5 sm:p-4">
+      <div className="min-w-0">
         <p className="text-xs font-semibold">
           {title}
         </p>

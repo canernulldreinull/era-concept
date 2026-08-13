@@ -10,7 +10,7 @@ export default function CartButton() {
   return (
     <Link
       href="/cart"
-      className="rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800"
+      className="whitespace-nowrap rounded-full bg-black px-3 py-2 text-xs font-medium text-white transition hover:bg-neutral-800 sm:px-4 sm:py-2.5 sm:text-sm"
     >
       Sepet ({totalQuantity})
     </Link>

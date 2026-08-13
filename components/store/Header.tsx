@@ -66,14 +66,14 @@ export default function Header() {
 
         {/* ANA HEADER */}
         <div className="border-b border-black/10">
-          <div className="mx-auto flex h-[88px] max-w-[1440px] items-center justify-between gap-6 px-5 lg:px-10">
+          <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between gap-2 px-3 sm:h-[88px] sm:gap-4 sm:px-5 lg:gap-6 lg:px-10">
             {/* MOBİL MENÜ */}
             <button
               type="button"
               onClick={() =>
                 setMobileOpen(true)
               }
-              className="flex h-10 w-10 cursor-pointer items-center justify-center lg:hidden"
+              className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center lg:hidden"
               aria-label="Menüyü aç"
             >
               <MenuIcon />
@@ -82,7 +82,7 @@ export default function Header() {
             {/* LOGO */}
             <Link
               href="/"
-              className="relative block h-[58px] w-[180px] shrink-0 sm:w-[210px]"
+              className="relative block h-[46px] w-[135px] shrink-0 sm:h-[58px] sm:w-[190px] lg:w-[210px]"
               aria-label="Era Concept Ana Sayfa"
             >
               <Image
@@ -122,7 +122,7 @@ export default function Header() {
                     (current) => !current
                   )
                 }
-                className="flex h-10 w-10 cursor-pointer items-center justify-center lg:hidden"
+                className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center lg:hidden"
                 aria-label="Ara"
               >
                 <SearchIcon />
@@ -186,7 +186,7 @@ export default function Header() {
 
       {/* ARAMA PANELİ */}
       {searchOpen && (
-        <div className="fixed inset-x-0 top-[120px] z-[60] border-b border-black/10 bg-white shadow-lg lg:top-[173px]">
+        <div className="fixed inset-x-0 top-[108px] z-[60] border-b border-black/10 bg-white shadow-lg lg:top-[173px]">
           <div className="mx-auto max-w-3xl px-6 py-7">
             <form
               action="/search"
@@ -253,7 +253,7 @@ export default function Header() {
                 onClick={() =>
                   setMobileOpen(false)
                 }
-                className="flex h-10 w-10 cursor-pointer items-center justify-center text-2xl"
+                className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center lg:hidden"
                 aria-label="Menüyü kapat"
               >
                 ×
