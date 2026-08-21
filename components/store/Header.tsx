@@ -82,6 +82,15 @@ export default function Header() {
               </a>
             </div>
           </div>
+                </div>
+
+        {/* KURULUM BİLGİLENDİRMESİ */}
+        <div className="border-b border-black/[0.06] bg-[#f8f6f1]">
+          <div className="mx-auto flex min-h-[32px] w-full max-w-[1500px] items-center justify-center px-4">
+            <p className="text-center text-[9px] font-medium uppercase tracking-[0.16em] text-neutral-500 sm:text-[10px]">
+              Site kurulum aşamasındadır · Ürünler ve fiyatlar temsilidir.
+            </p>
+          </div>
         </div>
 
         {/* ANA HEADER */}
